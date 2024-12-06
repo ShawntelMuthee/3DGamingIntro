@@ -1,6 +1,6 @@
-# 3D Web Game with Earth Portal
+# Game Intro Simulation with Earth Portal
 
-A WebGL-based 3D game application that features an immersive Earth visualization portal leading to an interactive gaming environment.
+A WebGL-based 3D game application simulation that features an immersive Earth visualization portal leading to an interactive gaming environment.
 
 ## Overview
 
