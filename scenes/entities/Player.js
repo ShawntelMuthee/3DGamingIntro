@@ -3,31 +3,25 @@ export class Player {
         this.mesh = mesh;
         this.animations = animations;
         this.scene = scene;
-        this.health = 100;
-        this.isAttacking = false;
-        this.isDead = false;
+        this.BABYLON = BABYLON;
         
-        // Create health bar
-        const healthBar = BABYLON.MeshBuilder.CreatePlane("healthBar", {width: 1, height: 0.1}, scene);
-        healthBar.parent = mesh;
-        healthBar.position.y = 2;
+        // Set initial rotation
+        this.mesh.rotation = new BABYLON.Vector3(0, Math.PI, 0);
         
-        const healthMat = new BABYLON.StandardMaterial("healthMat", scene);
-        healthMat.diffuseColor = new BABYLON.Color3(0, 1, 0);
-        healthMat.emissiveColor = new BABYLON.Color3(0, 1, 0);
-        healthBar.material = healthMat;
-        
-        this.healthBar = healthBar;
+        // Adjust player scale if needed
+        // this.mesh.scaling = new BABYLON.Vector3(1, 1, 1);
     }
 
-    takeDamage(amount) {
-        this.health = Math.max(0, this.health - amount);
-        this.healthBar.scaling.x = this.health / 100;
-        
-        if (this.health <= 0 && !this.isDead) {
-            this.isDead = true;
-            return true; // Indicates death
+    // Method to rotate player based on movement direction
+    rotateFromMovement(moveVector) {
+        if (!moveVector.equals(BABYLON.Vector3.Zero())) {
+            const angle = Math.atan2(moveVector.x, moveVector.z);
+            this.mesh.rotation.y = angle + Math.PI;
         }
-        return false;
+    }
+
+    // Method to update player position
+    update() {
+        // Add any per-frame updates here if needed
     }
 }

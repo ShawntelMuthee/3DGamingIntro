@@ -1,21 +1,49 @@
 import * as BABYLON from "@babylonjs/core"
 import '@babylonjs/loaders'
-import '@babylonjs/gui' // Add GUI support
+import '@babylonjs/gui'
 import './style.css'
-import menuScene from "../scenes/menuScene.js"
+import mainMenuScene from "../scenes/mainMenuScene.js"
+import mountainScene from "../scenes/mountainScene.js"
 
-const canvas = document.querySelector("canvas")
+const canvas = document.createElement("canvas")
+document.body.appendChild(canvas)
 const engine = new BABYLON.Engine(canvas, true)
-let currentScene = new BABYLON.Scene(engine)
+let currentScene = null
 
-// Start with menu scene instead of going directly to game
-await menuScene(BABYLON, engine, currentScene)
+const setScene = async (newScene) => {
+    if (currentScene) {
+        engine.stopRenderLoop()
+        currentScene.dispose()
+    }
+    currentScene = newScene
+}
 
-engine.runRenderLoop(() => {
-    currentScene.render()
-})
+const startGame = async () => {
+    try {
+        currentScene = await mainMenuScene(BABYLON, engine, null)
+        
+        window.addEventListener("keydown", async (e) => {
+            if (e.key === "m") {
+                engine.stopRenderLoop()
+                const mountainSceneInstance = await mountainScene(BABYLON, engine, currentScene)
+                await setScene(mountainSceneInstance)
+            }
+        })
+        
+        engine.runRenderLoop(() => {
+            if (currentScene && !currentScene.isDisposed) {
+                currentScene.render()
+            }
+        })
+    } catch (error) {
+        console.error("Failed to start game:", error)
+    }
+}
 
-// Handle window resizing
+startGame()
+
 window.addEventListener("resize", () => {
     engine.resize()
 })
+
+export { engine, setScene }
