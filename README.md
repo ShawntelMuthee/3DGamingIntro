@@ -46,7 +46,7 @@ This web application creates an engaging user experience by replicating a Google
 
 1. Clone the repository:
    
-git clone https://github.com/Shawntel Muthee/3dgame.git
+git clone https://github.com/ShawntelMuthee/3dgame.git
 
 2. Install dependencies:
 
