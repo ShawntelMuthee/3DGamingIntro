@@ -71,3 +71,43 @@ npm run dev
 This project is built using Vite for fast development and optimal production builds. The 3D rendering is handled by Babylon.js, providing powerful WebGL capabilities.
 
 ### Project Structure
+
+├── src/
+│ ├── main.js
+│ └── style.css
+├── scenes/
+│ ├── earthPortalScene.js
+│ ├── gameScene.js
+│ └── mountainScene.js
+├── models/
+│ ├── character.glb
+│ ├── character1.glb
+│ └── character2.glb
+└── textures/
+├── earth/
+└── environment/
+
+
+## Building for Production
+
+To create a production build:
+
+npm run build
+
+
+## Requirements
+
+- Modern web browser with WebGL support
+- Node.js and npm installed
+- Minimum recommended resolution: 1920x1080
+
+## License
+
+[MIT License](LICENSE)
+
+## Acknowledgments
+
+- Babylon.js team for the powerful 3D engine
+- Earth textures sourced from PolyHaven
+
+
