@@ -63,7 +63,7 @@ npm run dev
 - **S**: Move backward
 - **A**: Move left
 - **D**: Move right
-- **Mouse**: Camera control
+- **Arrow Keys**: Camera control
 - **Scroll**: Zoom in/out (Earth scene)
 
 ## Development
@@ -83,6 +83,7 @@ This project is built using Vite for fast development and optimal production bui
 │ ├── character.glb
 │ ├── character1.glb
 │ └── character2.glb
+│ └── character3.glb
 └── textures/
 ├── earth/
 └── environment/
